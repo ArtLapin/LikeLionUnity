@@ -37,12 +37,15 @@ public class Movement : MonoBehaviour
         float v = Input.GetAxis("Vertical"); // W, S, Up, Down
 
         //딱 떨어지는 값
-        float h2 = Input.GetAxisRaw("Horizontal"); // A, D, Left, Right
-        float v2 = Input.GetAxisRaw("Vertical"); // W, S, Up, Down
+        //float h2 = Input.GetAxisRaw("Horizontal"); // A, D, Left, Right
+        //float v2 = Input.GetAxisRaw("Vertical"); // W, S, Up, Down
 
-        Vector3 dir = new Vector3(h,0,v);
-        Debug.Log($"현재 입력 :{dir}");
+        Vector3 dir = new Vector3(h,0,v).normalized;
+        //Vector3 normalDir = dir.normalized; // 방향을 정규화하는 기능
+        //Debug.Log($"현재 입력 :{normalDir}");
 
         transform.position += dir * moveSpeed * Time.deltaTime; // 이동하는 기능
+
+        transform.LookAt(transform.position + dir);
     }
 }
